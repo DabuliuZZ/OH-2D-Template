@@ -89,8 +89,8 @@ public class OHSceneManager : OHMonoSingleton<OHSceneManager>
         {
             _blackScreen.DOFade(1f, _fadeDuration).SetEase(Ease.InQuad).OnComplete(() =>
             {
-                // 渐入完成后跳转场景
-                SceneManager.LoadScene(targetScene);
+                // 渐入完成后异步加载场景
+                StartCoroutine(LoadSceneAsync(targetScene));
             });
 
             // 同时淡出所有音频播放器音量
@@ -99,8 +99,36 @@ public class OHSceneManager : OHMonoSingleton<OHSceneManager>
         else
         {
             // 如果没有黑屏图像，直接跳转
-            UnityEngine.SceneManagement.SceneManager.LoadScene(targetScene);
+            SceneManager.LoadScene(targetScene);
         }
+    }
+
+    /// <summary>
+    /// 异步加载场景，等待加载完成后再激活
+    /// </summary>
+    /// <param name="sceneName">目标场景名</param>
+    private System.Collections.IEnumerator LoadSceneAsync(string sceneName)
+    {
+        // 开始异步加载
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        // 防止场景自动激活（等待加载完全完成）
+        asyncLoad.allowSceneActivation = false;
+
+        // 等待加载达到90%再激活场景
+        while (!asyncLoad.isDone)
+        {
+            // 当加载进度达到0.9时，表示基本加载完成
+            if (asyncLoad.progress >= 0.9f)
+            {
+                // 激活场景
+                asyncLoad.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+
+        // 场景加载完成，新场景的 OHSceneManager.Start() 会被调用
+        // 在那里会延迟淡出黑屏
     }
 
     /// <summary>
