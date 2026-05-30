@@ -94,3 +94,4 @@ crashlytics-build.properties
 
 # DOTween Pro (如果有Pro版本) - 免费版可以保留
 # /[Aa]ssets/Plugins/Demigiant/DOTweenPro/
+/.idea
