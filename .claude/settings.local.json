@@ -1,29 +1,33 @@
 {
   "permissions": {
     "allow": [
+      "Read",
+      "Edit",
+      "Update",
+      "Bash",
+      "Write",
       "Task",
       "TaskOutput",
       "NotebookEdit",
       "KillShell",
       "Skill",
-      "WebSearch",
-      "WebFetch",
-      "mcp__4_5v_mcp__analyze_image",
       "mcp__ide__getDiagnostics",
+      "mcp__web-search-prime__web_search_prime",
       "mcp__web-reader__webReader",
-      "mcp__web-search-prime__webSearchPrime",
-      "mcp__web_reader__webReader",
-      "mcp__zai-mcp-server__analyze_data_visualization",
-      "mcp__zai-mcp-server__analyze_image",
-      "mcp__zai-mcp-server__analyze_video",
-      "mcp__zai-mcp-server__diagnose_error_screenshot",
-      "mcp__zai-mcp-server__extract_text_from_screenshot",
-      "mcp__zai-mcp-server__ui_diff_check",
-      "mcp__zai-mcp-server__ui_to_artifact",
-      "mcp__zai-mcp-server__understand_technical_diagram",
+      "mcp__memu__get_memory_stats",
+      "mcp__memu__search_memory",
+      "mcp__memu__save_memory",
+      "mcp__memu__get_context_memories",
+      "mcp__memu__format_memories_for_context",
+      "mcp__memu__health_check",
+      "mcp__memu__update_memory",
+      "mcp__memu__delete_memory",
       "mcp__zread__get_repo_structure",
       "mcp__zread__read_file",
-      "mcp__zread__search_doc"
+      "mcp__zread__search_doc",
+      "mcp__proxy-brave-search__brave_web_search",
+      "mcp__proxy-jina-mcp-server__read_url"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true
 }
